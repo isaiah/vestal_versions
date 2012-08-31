@@ -10,7 +10,7 @@ describe VestalVersions::Reload do
     user.revert_to(first_version)
   end
 
-  it 'resets the version number to the most recent version' do
+  it 'resets the version iteration to the most recent version' do
     user.version.should_not == @last_version
     user.reload
     user.version.should == @last_version

@@ -21,7 +21,7 @@ module VestalVersions
         self.vestal_versions_options[:only] = Array(options.delete(:only)).map(&:to_s).uniq if options[:only]
         self.vestal_versions_options[:except] = Array(options.delete(:except)).map(&:to_s).uniq if options[:except]
         self.vestal_versions_options[:initial_version] = options.delete(:initial_version)
-        self.vestal_versions_options[:max_versions_to_keep] = options.delete(:versions_to_keep) || 0
+        self.vestal_versions_options[:versions_to_keep] = options.delete(:versions_to_keep) || 0
         
         result
       end

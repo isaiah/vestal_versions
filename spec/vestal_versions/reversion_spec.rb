@@ -24,11 +24,11 @@ describe VestalVersions::Reversion do
     end
   end
 
-  it 'returns the new version number' do
+  it 'returns the new version iteration' do
     subject.revert_to(first_version).should == first_version
   end
 
-  it 'changes the version number when saved' do
+  it 'changes the version iteration when saved' do
     expect{ subject.revert_to! first_version }.to change{ subject.version }
   end
 
@@ -38,7 +38,7 @@ describe VestalVersions::Reversion do
     end
   end
 
-  it 'is able to target a version number' do
+  it 'is able to target a version iteration' do
     subject.revert_to(1)
     subject.version.should == 1
   end
@@ -53,7 +53,7 @@ describe VestalVersions::Reversion do
   it 'is able to target a version object' do
     subject.versions.each do |version|
       subject.revert_to(version)
-      subject.version.should == version.number
+      subject.version.should == version.iteration
     end
   end
 

@@ -4,7 +4,7 @@ describe VestalVersions::Creation do
   let(:name){ 'Steve Richert' }
   subject{ User.create(:name => name) }
 
-  context 'the number of versions' do
+  context 'the iteration of versions' do
 
     its('versions.count'){ should == 0 }
 
@@ -76,14 +76,14 @@ describe VestalVersions::Creation do
   end
 
   context 'first version' do
-    it 'is number 2 after an update' do
+    it 'is iteration 2 after an update' do
       subject.update_attribute(:last_name, 'Jobs')
-      subject.versions.first.number.should == 2
+      subject.versions.first.iteration.should == 2
     end
 
-    it "is number 1 if :initial_version is true" do
+    it "is iteration 1 if :initial_version is true" do
       User.prepare_versioned_options(:initial_version => true)
-      subject.versions.first.number.should == 1
+      subject.versions.first.iteration.should == 1
     end
   end
 
