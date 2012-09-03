@@ -73,7 +73,7 @@ module VestalVersions
 
         # Remove out dated version upon creating new version
         def remove_version
-          versions.first.destroy if versions.length >= vestal_versions_options[:versions_to_keep]
+          versions.first.destroy if versions.count >= vestal_versions_options[:versions_to_keep]
         end
 
         # Returns an array of column names that should be included in the changes of created

@@ -87,4 +87,30 @@ describe VestalVersions::Creation do
     end
   end
 
+  context "maximum versions to keep" do
+
+    before do
+      User.prepare_versioned_options(:versions_to_keep => 3)
+      %w(Bush Tayler).each do |last_name| 
+        subject.update_attribute(:last_name, last_name)
+      end
+    end
+
+    it "remove old versions if reaches maximum versions" do
+      subject.update_attribute(:last_name, "Robert")
+      expect{
+        subject.update_attribute(:last_name, "Lee")
+      }.to change{ subject.versions.count }.by(0)
+      subject.versions.at(2).should be_nil
+    end
+
+    it "create a new version if less than maximum versions" do 
+      expect{
+        subject.update_attribute(:last_name, "Lee")
+      }.to change{ subject.versions.count }.by(1)
+      subject.versions.at(2).should_not be_nil
+    end
+
+    it "can revert to earliest version in database"
+  end
 end

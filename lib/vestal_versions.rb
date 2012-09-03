@@ -118,6 +118,7 @@ module VestalVersions
       include Deletion
 
       prepare_versioned_options(options)
+      options.merge(order: 'versions.id ASC')
       has_many :versions, options, &block
     end
   end
