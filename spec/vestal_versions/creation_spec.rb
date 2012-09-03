@@ -90,7 +90,7 @@ describe VestalVersions::Creation do
   context "maximum versions to keep" do
 
     before do
-      User.prepare_versioned_options(:versions_to_keep => 3)
+      User.prepare_versioned_options(:versions_to_keep => 4)
       %w(Bush Tayler).each do |last_name| 
         subject.update_attribute(:last_name, last_name)
       end
